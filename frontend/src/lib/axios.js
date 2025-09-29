@@ -4,8 +4,12 @@ import axios from "axios";
 
 //basically this part is common in every api request so we seperate it and define in one place , so that we can use it wherever needed.
 
-export const axiosInstance = axios.create({
-    baseURL : 'http://localhost:5001/api',
-    withCredentials : true, //send cookies with the request.
-});
 
+const BASE_URL = import.meta.env.MODE === "development" 
+  ? "http://localhost:5001/api" 
+  : "/api";
+
+export const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true, // send cookies with the request
+});

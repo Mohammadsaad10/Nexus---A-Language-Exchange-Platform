@@ -21,7 +21,7 @@ const SideBar = () => {
         </Link>
       </div>
 
-      <nav className="flex-1 p-4 space-y-1">
+      <nav className="flex-1 p-4 space-y-1"> {/*space-y-1 means space between each link   And flex-1 here keep nav vertical */}
         <Link
           to="/"
           className={`btn btn-ghost justify-start w-full gap-3 px-3 normal-case ${
@@ -55,7 +55,7 @@ const SideBar = () => {
       </nav>
 
       {/* USER PROFILE SECTION */}
-      <div className="p-4 border-t border-base-300 mt-auto">
+      <div className="p-4 border-t border-base-300 mt-auto"> {/* mt-auto pushes profile section to bottom of screen */}
         <div className="flex items-center gap-3">
           <div className="avatar">
             <div className="w-10 rounded-full">

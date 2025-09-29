@@ -22,7 +22,7 @@ function NotificationPage() {
     },
   });
 
-  //  All buttons were flickering after sending friend request to one User, due to shared 'isPending' state , so we created a new state 'loadingAcceptRequest' for each button.
+  // Error faced during project :  All buttons were flickering after sending friend request to one User, due to shared 'isPending' state , so we created a new state 'loadingAcceptRequest' for each button.
 
   const incomingRequests = friendRequests?.incomingRequests || [];
   
@@ -158,3 +158,23 @@ function NotificationPage() {
 }
 
 export default NotificationPage;
+
+
+//***Notifications Page Flow */
+
+//1.useQuery hook is called with queryFn as "getFriendRequests".
+//2.getFriendRequests fn is called from api.js file and it makes a GET request to "/users/friend-requests" endpoint.
+//3.request goes to server and it redirects it to user.route.js -> user.controller.js , where we have "getFriendRequests" fn.
+//4.getFriendRequests fn is called and it returns the array of friend requests, containing incoming and accepted requests. res.status(200).json({ incomingRequests, acceptedRequests})
+//5.api.js file returns the friend requests to the useQuery hook.
+//6.Now we have got incoming and accepted requests in the useQuery hook.We display them at notifications page.
+//7.We can accept incoming requests using useMutation hook with mutationFn as "acceptFriendRequest".
+//8.When we accept a request, useMutation hook is called. It calls mutationFn "acceptFriendRequest" from api.js file.
+//9."acceptFriendRequest" fn makes a PUT request to `/users/friend-request/${requestId}/accept` endpoint.
+//10.request goes to server and it redirects it to user.route.js -> user.controller.js , where we have "acceptFriendRequest" fn.
+//11.acceptFriendRequest fn is called and it updates the status of the friend request to accepted. saves it to database. then add each user to the other's friends array. and returns success message.
+//12.api.js file returns the success message to the useMutation hook.
+//13.Then onSuccess callback is called. It invalidates the "friendRequest" and "friends" queries. This will trigger a refetch of the data.
+//14.This will immediately update the ui, removing the accepted request from the list and adding the new friend to the friends list.
+
+

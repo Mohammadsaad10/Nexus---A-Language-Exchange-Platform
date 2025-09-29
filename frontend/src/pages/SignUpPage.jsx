@@ -48,6 +48,7 @@ function SignUpPage() {
   return (
     <div
       className="h-screen flex items-center justify-center p-4 sm:p-6 md:p-8"
+      data-theme="forest"
     >
       <div className="border border-primary/25 flex flex-col lg:flex-row w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden">
         {/* SIGNUP FORM - LEFT SIDE */}
@@ -75,7 +76,7 @@ function SignUpPage() {
                 <div>
                   <h2 className="text-xl font-semibold">Create an Account</h2>
                   <p className="text-sm opacity-70">
-                    Join Streamify and start your language learning adventure!
+                    Join Nexus and start your language learning adventure!
                   </p>
                 </div>
 

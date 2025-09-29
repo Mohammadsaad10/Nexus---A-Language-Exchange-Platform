@@ -60,7 +60,7 @@ const Navbar = () => {
 
           <div className="avatar">
             <div className="w-9 rounded-full">
-              <img src={authUser?.profilePic} alt="User Avatar" rel="noreferrer" />
+              <img src={authUser?.profilePic} alt="User Avatar" rel="noreferrer" /> {/* rel="noreferrer" hides the referrer info (your site URL) when opening a link. It’s mainly a privacy feature.    */}
             </div>
           </div>
 
@@ -75,3 +75,16 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+//Logout flow : 
+//1.User clicks logout button
+//2.from handleLogout() , logoutMutation() is called.
+//3.flow goes to useLogout hook, where we have mutation function , 'logout', that calls the logout api.
+//4.flow goes to api.js, where post request is made to '/auth/logout' endpoint.
+//5.flow goes to server-> auth.route.js-> logout controller-> logout function.
+//6.logout function calls res.clearCookie("jwt"); which basically deletes the cookie,  and returns res.status(200).json({ success: true, message: "Logged out successfully!"});
+//7.flow returns back to useLogout hook , where onSuccess we have queryClient.invalidateQueries({ queryKey: ["authUser"] });
+//8.now we have no cookie associated with the request, and we have no user data in the cache, so we are redirected to login page.
+
+
+//navbar.jsx -> logoutMutation -> useLogout -> mutations fn (logout) -> api.js -> axiosInstance.post("/auth/logout") -> server -> auth.route.js -> logout controller -> logout function -> res.clearCookie("jwt"); -> res.status(200).json({ success: true, message: "Logged out successfully!"});

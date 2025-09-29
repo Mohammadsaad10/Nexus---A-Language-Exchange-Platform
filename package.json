@@ -1,0 +1,27 @@
+{
+  "name": "nexus",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "build": "npm run install-all && cd frontend && npm run build",
+    "start": "cd backend && cross-env NODE_ENV=production npm start",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohammadsaad10/Nexus-Demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mohammadsaad10/Nexus-Demo/issues"
+  },
+  "homepage": "https://github.com/Mohammadsaad10/Nexus-Demo#readme",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^8.0.0",
+    "cross-env": "^7.0.3"
+  }
+}

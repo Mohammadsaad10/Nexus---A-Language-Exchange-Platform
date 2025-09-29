@@ -33,6 +33,7 @@ function LoginPage() {
   return (
     <div
       className="h-screen flex items-center justify-center p-4 sm:p-6 md:p-8"
+      data-theme="forest"
     >
       <div className="border border-primary/25 flex flex-col lg:flex-row w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden">
       
@@ -50,7 +51,7 @@ function LoginPage() {
            {/* ERROR MESSAGE DISPLAY */}
           {error && (
             <div className="alert alert-error mb-4">
-              <span>{error.response?.data.message}</span>
+              <span>{error.response?.data?.message}</span>
             </div>
           )}
 
@@ -148,3 +149,30 @@ function LoginPage() {
 }
 
 export default LoginPage
+
+
+// data flow -> 
+
+// from loginPage -> useLogin -> api (login method) -> authController  -> login -> 
+
+// data sent from loginPage i.e. client side => {email,password}
+
+//goes to useLogin hook , where it calls loginMutation. mutationFn : login gets called. 
+
+//control goes to login method in api.js. which calls login method in authController.
+
+//control goes to login method in authController.
+
+//data received at login method in authController i.e. server side => {email,password}
+
+// checking : 1. all fields are provided. 
+//             2. user exists.
+//             3. password is correct(matching with one in database (bcrypt.compare)).
+
+//if all checks pass, then :
+
+// data sent from login method i.e. server side => {success : true, user}
+
+// data received at authController(login) -> server -> api(login) -> loginPage i.e. client side => {success : true, user}
+
+// query updates -> authUser gets value(true) and then in App.js routing if(isAuthenticated) and !onboarded then navigate to '/onboarding' , else navigate to '/'

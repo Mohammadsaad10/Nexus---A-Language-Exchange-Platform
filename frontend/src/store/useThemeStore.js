@@ -1,8 +1,9 @@
 import { create } from 'zustand'
-//zustnad store for theme management
+//zustand store for theme management
+//useThemeStore is a custom hook that uses zustand to create a store for theme management. i.e. a global state for theme.
 
 export const useThemeStore = create((set) => ({
-  theme : localStorage.getItem("Nexus-theme") || 'coffee', //check if there is a theme in local storage, if not set to 'coffee' as default theme.
+  theme : localStorage.getItem("Nexus-theme") || 'coffee', //check if there is a theme in local storage, if not, set to 'coffee' as default theme.
   setTheme : (theme) => {
     localStorage.setItem("Nexus-theme",theme); //save theme to local storage
     set({ theme});
@@ -14,3 +15,5 @@ export const useThemeStore = create((set) => ({
 //when user changes the theme, it will save the theme to local storage and update the state.
 //so when user refreshes the page, it will get the theme from local storage and set it to the state.
 //this way the theme will persist even after page refresh.
+
+//localStorage is a browser API that allows us to store data in the browser.

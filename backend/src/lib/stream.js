@@ -11,7 +11,7 @@ if(!apiKey || !apiSecret){
 // Initialize the StreamChat client with the API key and secret.
 const streamClient = StreamChat.getInstance(apiKey, apiSecret);
 
-
+// upserting means create or update.
 export const upsertStreamUser = async (userData) =>{
   try {
     await streamClient.upsertUsers([userData]);

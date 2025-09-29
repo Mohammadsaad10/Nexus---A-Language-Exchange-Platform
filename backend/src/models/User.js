@@ -46,11 +46,6 @@ const userSchema = new mongoose.Schema({
             ref : "User", // Reference to User model.
         }
     ],
-    unreadMessages: {
-        type: Map,
-        of: Number,
-        default: {}
-    }
 },{ timestamps: true});
 
 //pre hook , to incrypt/ hashing the password.

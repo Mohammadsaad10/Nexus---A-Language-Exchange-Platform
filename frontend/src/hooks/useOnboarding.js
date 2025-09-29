@@ -9,7 +9,7 @@ const useOnboarding = () => {
     const {mutate, isPending } = useMutation({
         mutationFn : completeOnboarding,
         onSuccess :  () => {
-          queryClient.invalidateQueries({ queryKey : ["authUser"], exact:true });
+          queryClient.invalidateQueries({ queryKey : ["authUser"], exact:true }); //exact true -> invalidates only the query with the exact key.
           toast.success("Onboarding completed successfully!");
         },
         onError: (error) => {
